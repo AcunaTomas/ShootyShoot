@@ -15,4 +15,4 @@ Unity
 
 Género: Shoot em up, Hipercasual
 
-GDD: https://docs.google.com/document/d/11eKLjLB_VGXWkVoXviZjfbiymW2siATCPlGM0KjMNhk/edit
+GDD: https://docs.google.com/document/d/11eKLjLB_VGXWkVoXviZjfbiymW2siATCPlGM0KjMNhk
