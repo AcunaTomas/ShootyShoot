@@ -5,19 +5,28 @@ using UnityEngine;
 public class plyrmove : MonoBehaviour
 {
     public Proyectiles balas;
+    public float waittime = 0.2f;
+    public float elapsed = 0f;
     public Transform trs;
     private float z = 6.95f;
 
     void Start()
     {
         trs = GetComponent<Transform>();
-        InvokeRepeating("Bulletgen",0.5f,0.2f);
+        //InvokeRepeating("Bulletgen",0.5f,0.2f);
     }
 
     void Update()
     {
-
+        elapsed += Time.deltaTime;
+        Debug.Log(elapsed);
+        if (elapsed >= waittime)
+        {
+            Bulletgen();
+            elapsed = 0;
+        }
     }
+
     void OnMouseDown()
     {
         Debug.Log("Hi");
@@ -33,9 +42,11 @@ public class plyrmove : MonoBehaviour
 
     }
 
-    void Bulletgen()
+    private void Bulletgen()
     {
-        Proyectiles b = Instantiate(balas,trs.position, trs.rotation);
+        print("insta");
+        //yield return new WaitForSeconds(waittime);
+        Proyectiles b = Instantiate(balas,trs.position + new Vector3(0,+1,0), trs.rotation);
         b.gameObject.SetActive(true);
     }
 }

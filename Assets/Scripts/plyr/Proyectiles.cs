@@ -15,6 +15,15 @@ public class Proyectiles : MonoBehaviour
         transform.position += new Vector3( 0, 7 * Time.deltaTime, 0);
     }
 
+    private void OnCollisionEnter(Collision other) {
+        if (other.gameObject.tag == "Enemy")
+        {
+            other.transform.SendMessage("Die");
+            Destroy(gameObject);
+        }
+        
+    }
+
     IEnumerator Timeout()
     {
         yield return new WaitForSeconds(3);
