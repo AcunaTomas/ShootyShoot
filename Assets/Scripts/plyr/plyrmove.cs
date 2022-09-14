@@ -5,10 +5,12 @@ using UnityEngine;
 public class plyrmove : MonoBehaviour
 {
     public Proyectiles balas;
+    public GameManager manager;
     public float waittime = 0.2f;
     public float elapsed = 0f;
     public Transform trs;
     private float z = 6.95f;
+    public int health = 3;
 
     void Start()
     {
@@ -46,7 +48,19 @@ public class plyrmove : MonoBehaviour
     {
         print("insta");
         //yield return new WaitForSeconds(waittime);
-        Proyectiles b = Instantiate(balas,trs.position + new Vector3(0,+1,0), trs.rotation);
+        Proyectiles b = Instantiate(balas,trs.position + new Vector3(0,+2,0), balas.transform.rotation);
         b.gameObject.SetActive(true);
+        b.target = "Enemy";
+        
     }
+    private void Die()
+    {
+        health += -1;
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+            manager.restart();
+        }
+    }
+
 }
