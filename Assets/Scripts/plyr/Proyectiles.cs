@@ -25,7 +25,11 @@ void Start()
         }
         
     }
-
+    public void setColors()
+    {
+        var cubeRenderer = GetComponent<Renderer>();
+        cubeRenderer.material.SetColor("_Color", Color.red);
+    }
     IEnumerator Timeout()
     {
         yield return new WaitForSeconds(3);

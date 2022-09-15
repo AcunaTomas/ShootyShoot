@@ -5,7 +5,7 @@ using UnityEngine;
 public class Background_scroll : MonoBehaviour
 {
     float scroll = 0f;
-    float mult = 0.01f;
+    public float mult = -0.01f;
 
     void Start()
     {

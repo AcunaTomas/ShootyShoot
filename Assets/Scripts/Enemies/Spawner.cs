@@ -15,4 +15,6 @@ public class Spawner : MonoBehaviour
         Generic E = Instantiate(Enemy,Enemy.transform.position, Enemy.transform.rotation);
         E.gameObject.SetActive(true);
     }
+
+
 }

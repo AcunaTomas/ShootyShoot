@@ -6,6 +6,7 @@ public class Generic : MonoBehaviour
 {
     private int type = 1;
     public Proyectiles Bala;
+    private bool invis = true;
     private int hp = 4;
     public float dir = -4f;
     public float swift = 0f;
@@ -18,6 +19,7 @@ public class Generic : MonoBehaviour
 
     void Start()
     {
+        
         StartCoroutine(Timeout());
         InvokeRepeating("Attack", 2f, 2f);
     }
@@ -36,6 +38,8 @@ public class Generic : MonoBehaviour
     }
     IEnumerator Timeout()
     {
+        yield return new WaitForSeconds(2);
+        invis = false;
         yield return new WaitForSeconds(6);
         transform.position += new Vector3( -4 * Time.deltaTime, 0, 0);
         yield return new WaitForSeconds(3);
@@ -44,11 +48,21 @@ public class Generic : MonoBehaviour
 
     private void Die()
     {
+        if (invis == true)
+        {
+            
+        }
+        else
+        {
         if (hp == 0)
         {
+           var man = GameObject.Find("GameManager");
+           man.gameObject.SendMessage("Score", 15);
            Destroy(gameObject); 
         }
         hp += -1;
+        }
+
         
     }
 
@@ -57,6 +71,7 @@ public class Generic : MonoBehaviour
         Proyectiles a = Instantiate(Bala, transform.position, Bala.transform.rotation);
         a.direction = -7;
         a.target = "Player";
+        a.setColors();
         a.gameObject.SetActive(true);
     }
 

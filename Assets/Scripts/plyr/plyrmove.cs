@@ -15,13 +15,14 @@ public class plyrmove : MonoBehaviour
     void Start()
     {
         trs = GetComponent<Transform>();
+        manager.initializetext(health);
+
         //InvokeRepeating("Bulletgen",0.5f,0.2f);
     }
 
     void Update()
     {
         elapsed += Time.deltaTime;
-        Debug.Log(elapsed);
         if (elapsed >= waittime)
         {
             Bulletgen();
@@ -61,6 +62,7 @@ public class plyrmove : MonoBehaviour
             Destroy(gameObject);
             manager.restart();
         }
+        manager.UpdateHP(health);
     }
 
 }
