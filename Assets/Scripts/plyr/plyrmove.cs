@@ -36,18 +36,18 @@ public class plyrmove : MonoBehaviour
     }
     void OnMouseDrag() {
         Vector3 a = Input.mousePosition;
-        a.z = Camera.main.nearClipPlane;
+        a.z = 16.9576f; //Valor en z calibrado manualmente, este suele dar posiciones con menos error.s
+        Debug.Log(a + "before");
         a = Camera.main.ScreenToWorldPoint(a);
         
         Debug.Log(a + "Mouse");
         Debug.Log(trs.position + "Object");
-        trs.position =  new Vector3(  a.x * 30 , -6.95f, z);
+        trs.position =  new Vector3(  a.x , a.y , z);
 
     }
 
     private void Bulletgen()
     {
-        print("insta");
         //yield return new WaitForSeconds(waittime);
         Proyectiles b = Instantiate(balas,trs.position + new Vector3(0,+2,0), balas.transform.rotation);
         b.gameObject.SetActive(true);

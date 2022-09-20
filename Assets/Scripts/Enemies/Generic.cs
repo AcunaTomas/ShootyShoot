@@ -21,13 +21,13 @@ public class Generic : MonoBehaviour
     {
         
         StartCoroutine(Timeout());
-        InvokeRepeating("Attack", 2f, 2f);
+        //InvokeRepeating("Attack", 2f, 2f);
     }
 
    void Update()
     {
         swift += time;
-        if (swift <= -14f || swift >= 14f)
+        if (swift <= -10f || swift >= 10f)
         {
             dir = dir * -1;
             time = time * -1;
@@ -38,7 +38,7 @@ public class Generic : MonoBehaviour
     }
     IEnumerator Timeout()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.5f);
         invis = false;
         yield return new WaitForSeconds(6);
         transform.position += new Vector3( -4 * Time.deltaTime, 0, 0);
