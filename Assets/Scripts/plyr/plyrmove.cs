@@ -54,6 +54,15 @@ public class plyrmove : MonoBehaviour
         b.target = "Enemy";
         
     }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            Die();
+        }
+    }
+
     private void Die()
     {
         health += -1;

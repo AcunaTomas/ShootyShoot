@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     public void initializetext(int s)
     {
         hp.text.text= "HP: " + s;
-        scor.text.text = "Score:";
+        scor.text.text = "Score:"; //This triggers a null reference exception and idk why
     }
 
     public void UpdateHP(int s)

@@ -2,47 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Generic : MonoBehaviour
+public class Generic : MonoBehaviour //Enemy Template class - create enemies by deriving from this class 
 {
     private int type = 1;
     public Proyectiles Bala;
     private bool invis = true;
-    private int hp = 4;
+    public int hp = 3;
     public float dir = -4f;
-    public float swift = 0f;
+    public float swift = 0.3f;
     public float time = 0.05f;
+    public int score = 15;
 
     public int getType()
     {
         return type;
     }
 
-    void Start()
-    {
-        
-        StartCoroutine(Timeout());
-        //InvokeRepeating("Attack", 2f, 2f);
-    }
-
-   void Update()
-    {
-        swift += time;
-        if (swift <= -10f || swift >= 10f)
-        {
-            dir = dir * -1;
-            time = time * -1;
 
 
-        }
-        transform.position += new Vector3( 0, dir * Time.deltaTime, 0);
-    }
-    IEnumerator Timeout()
+
+    public IEnumerator Timeout()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         invis = false;
-        yield return new WaitForSeconds(6);
-        transform.position += new Vector3( -4 * Time.deltaTime, 0, 0);
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(25f);
         Destroy(gameObject);
     }
 
@@ -54,13 +37,14 @@ public class Generic : MonoBehaviour
         }
         else
         {
-        if (hp == 0)
+        hp += -1;
+        if (hp < 1)
         {
            var man = GameObject.Find("GameManager");
-           man.gameObject.SendMessage("Score", 15);
+           man.gameObject.SendMessage("Score", score);
            Destroy(gameObject); 
         }
-        hp += -1;
+        
         }
 
         

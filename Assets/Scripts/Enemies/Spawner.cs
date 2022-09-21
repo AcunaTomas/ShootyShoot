@@ -7,7 +7,7 @@ public class Spawner : MonoBehaviour
     public Generic Enemy;
     void Start()
     {
-        InvokeRepeating("Spawn",0.5f,3f);
+        InvokeRepeating("Spawn",0.5f,8f);
     }
 
     void Spawn()

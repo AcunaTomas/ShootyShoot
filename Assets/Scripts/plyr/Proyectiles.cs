@@ -17,7 +17,7 @@ void Start()
         transform.position += new Vector3( 0, direction * Time.deltaTime, 0);
     }
 
-    private void OnCollisionEnter(Collision other) {
+    private void OnTriggerEnter(Collider other) {
         if (other.gameObject.tag == target)
         {
             other.transform.SendMessage("Die");
