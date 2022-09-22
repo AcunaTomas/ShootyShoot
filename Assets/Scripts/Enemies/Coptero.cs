@@ -5,6 +5,7 @@ using UnityEngine;
 public class Coptero : Generic //Update and Start set per enemy
 {
     public float dirx = 2;
+    public int spawningmode = 0;
     void Update()
     {
         swift += time;
@@ -24,12 +25,10 @@ public class Coptero : Generic //Update and Start set per enemy
 
     }
 
-    void Start() //generic attribiutes set here: Score,Shooting frequency, Direction, etc.
+    void Start() //generic attribiutes set here: Score,Shooting frequency, Direction, etc. - Only use for overriding stuff
     {
 
         StartCoroutine(Timeout());
         InvokeRepeating("Attack", 2f, 2f);
-        score = 55;
-        hp = 8;
     }
 }

@@ -260,6 +260,7 @@ MonoBehaviour:
   swift: 0
   time: 0.05
   score: 15
+  dirx: 2
 --- !u!1 &455434558
 GameObject:
   m_ObjectHideFlags: 0
@@ -786,7 +787,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1127687785
 Transform:
   m_ObjectHideFlags: 0
@@ -815,7 +816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a2afa30818472e4e8d74e3534876d33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemy: {fileID: 1317746155}
+  Enemy: {fileID: 1317746157}
 --- !u!1 &1180224820
 GameObject:
   m_ObjectHideFlags: 0
@@ -1077,7 +1078,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: feb1235f3d32d8b4aadcd48f258a3491,
         type: 3}
       propertyPath: m_Name
-      value: CopterModel
+      value: CopterModel 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: feb1235f3d32d8b4aadcd48f258a3491,
         type: 3}
@@ -1103,24 +1104,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1317746152}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1317746155
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1317746154}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd35b1519008b6e47a219d57273ab5f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Bala: {fileID: 1789847965}
-  hp: 3
-  dir: -4
-  swift: 0
-  time: 0.05
-  score: 15
 --- !u!65 &1317746156
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1134,6 +1117,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.3821008, y: 2.4559546, z: 3.0163045}
   m_Center: {x: -0.066364154, y: 0.72797686, z: 0.27111286}
+--- !u!114 &1317746157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317746154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: def7d636a31c6af498d5ed4b3fad04b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bala: {fileID: 1789847965}
+  hp: 3
+  dir: -4
+  swift: 0.3
+  time: 0.05
+  score: 15
+  dirx: -2
 --- !u!1001 &1468100838
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -32,16 +32,16 @@ public class plyrmove : MonoBehaviour
 
     void OnMouseDown()
     {
-        Debug.Log("Hi");
+        
     }
     void OnMouseDrag() {
         Vector3 a = Input.mousePosition;
         a.z = 16.9576f; //Valor en z calibrado manualmente, este suele dar posiciones con menos error.s
-        Debug.Log(a + "before");
+        //Debug.Log(a + "before");
         a = Camera.main.ScreenToWorldPoint(a);
         
-        Debug.Log(a + "Mouse");
-        Debug.Log(trs.position + "Object");
+        //Debug.Log(a + "Mouse");
+        //Debug.Log(trs.position + "Object");
         trs.position =  new Vector3(  a.x , a.y , z);
 
     }
