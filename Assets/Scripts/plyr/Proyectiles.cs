@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class Proyectiles : MonoBehaviour
 {
-
-void Start()
+    public string target = "";
+    public float direction = 7;
+    public float directionx = 0;
+    void Start()
     {
         StartCoroutine(Timeout());
     }
-    public string target = "";
-    public float direction = 7;
 
     void Update()
     {
-        transform.position += new Vector3( 0, direction * Time.deltaTime, 0);
+        transform.Translate(directionx * Time.deltaTime, direction * Time.deltaTime, 0);
     }
+
 
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.tag == target)

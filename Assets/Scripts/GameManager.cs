@@ -8,13 +8,15 @@ public class GameManager : MonoBehaviour
     public txt texto;
     public txt scor;
     public txt hp;
+    public int scoregoal = 300;
+    private string endtext = "GAME OVER YEAH!!!";
 
-    private int score;
+    public int score;
 
     void Start()
     {
         Application.targetFrameRate = 60;
-
+        
     }
 
     public void initializetext(int s)
@@ -39,11 +41,17 @@ public class GameManager : MonoBehaviour
         Debug.Log("score");
         score += s;
         scor.text.text = "Score: " + score;
+        if (score >= scoregoal)
+        {
+            endtext = "YOUR WINNER!";
+            restart();
+        }
     }
     IEnumerator xd()
     {
         yield return new WaitForSeconds(1);
         texto.gameObject.SetActive(true);
+        texto.text.text = endtext;
         yield return new WaitForSeconds(3);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

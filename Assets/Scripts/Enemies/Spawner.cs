@@ -5,9 +5,10 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public Generic Enemy;
+    public float spawningInterval;
     void Start()
     {
-        InvokeRepeating("Spawn",0.5f,8f);
+        InvokeRepeating("Spawn",0.5f,spawningInterval);
     }
 
     void Spawn()
