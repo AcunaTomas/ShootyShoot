@@ -5,6 +5,7 @@ using UnityEngine;
 public class plyrmove : MonoBehaviour
 {
     public Proyectiles balas;
+    public int mode = 0;
     public GameManager manager;
     public float waittime = 0.2f;
     public float elapsed = 0f;
@@ -25,7 +26,7 @@ public class plyrmove : MonoBehaviour
         elapsed += Time.deltaTime;
         if (elapsed >= waittime)
         {
-            Bulletgen();
+            Bulletgen(mode);
             elapsed = 0;
         }
     }
@@ -46,13 +47,14 @@ public class plyrmove : MonoBehaviour
 
     }
 
-    private void Bulletgen()
+    private void Bulletgen(int mod)
     {
-        //yield return new WaitForSeconds(waittime);
-        Proyectiles b = Instantiate(balas,trs.position + new Vector3(0,+2,0), balas.transform.rotation);
-        b.gameObject.SetActive(true);
-        b.target = "Enemy";
-        
+        switch (mod)
+        {
+            default:
+                normalShoot();
+                break;
+        }
     }
 
     private void OnCollisionEnter(Collision other)
@@ -72,6 +74,13 @@ public class plyrmove : MonoBehaviour
             manager.restart();
         }
         manager.UpdateHP(health);
+    }
+
+    private void normalShoot()
+    {
+        Proyectiles b = Instantiate(balas,trs.position + new Vector3(0,+2,0), balas.transform.rotation);
+        b.gameObject.SetActive(true);
+        b.target = "Enemy";
     }
 
 }

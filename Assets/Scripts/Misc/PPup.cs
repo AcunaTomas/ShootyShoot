@@ -12,6 +12,6 @@ public class PPup : MonoBehaviour
 
     void Update()
     {
-        
+        transform.Translate(0,-2 * Time.deltaTime,0);
     }
 }
