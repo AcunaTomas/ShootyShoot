@@ -82,5 +82,10 @@ public class plyrmove : MonoBehaviour
         b.gameObject.SetActive(true);
         b.target = "Enemy";
     }
+    private void HPup(int a)
+    {
+        health += a;
+        manager.UpdateHP(health);
+    }
 
 }

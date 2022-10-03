@@ -10,15 +10,19 @@ public class Shooter : Generic //Update and Start set per enemy
     void Update()
     {
         swift += time;
-        if (swift >= 10f)
+        if (swift <= 10f)
         {
-
+            transform.position += new Vector3(0, dir * Time.deltaTime, 0);
 
 
         }
+        else if (swift <= 22f)
+        {
+            
+        }
         else
         {
-            transform.position += new Vector3(0, dir * Time.deltaTime, 0);
+            transform.position += new Vector3(-dirx * Time.deltaTime, -dir * Time.deltaTime, 0);
         }
 
     }

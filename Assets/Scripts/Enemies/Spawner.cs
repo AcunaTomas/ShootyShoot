@@ -13,9 +13,23 @@ public class Spawner : MonoBehaviour
 
     void Spawn()
     {
-        Generic E = Instantiate(Enemy,Enemy.transform.position, Enemy.transform.rotation);
-        E.gameObject.SetActive(true);
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            var original = transform.GetChild(i).gameObject;
+
+            var E = Instantiate(original, original.transform.position, original.transform.rotation);
+
+            E.gameObject.SetActive(true);
+        }
+        
+
     }
 
-
+    private void Activate(string tag)
+    {
+        if (gameObject.CompareTag(tag))
+        {
+            gameObject.SetActive(true);
+        }
+    }
 }

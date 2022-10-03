@@ -10,13 +10,15 @@ public class GameManager : MonoBehaviour
     public txt hp;
     public int scoregoal = 300;
     private string endtext = "GAME OVER YEAH!!!";
+    private float lvlduration = 90f;
+
 
     public int score;
 
     void Start()
     {
         Application.targetFrameRate = 60;
-        
+        StartCoroutine(LvlTimelimit(lvlduration));
     }
 
     public void initializetext(int s)
@@ -41,11 +43,11 @@ public class GameManager : MonoBehaviour
         Debug.Log("score");
         score += s;
         scor.text.text = "Score: " + score;
-        if (score >= scoregoal)
+       /* if (score >= scoregoal)
         {
             endtext = "YOUR WINNER!";
             restart();
-        }
+        } */
     }
     IEnumerator xd()
     {
@@ -55,5 +57,30 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(3);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-
+    IEnumerator LvlTimelimit(float a) //Controls level flow, divided in 3 parts, beginning, middle and end
+    {
+        yield return new WaitForSeconds(a/3);
+        Debug.Log("First Third Reached");
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            var b = transform.GetChild(i).gameObject;
+            if (b.CompareTag("Middle") == true)
+            {
+                b.SetActive(true);
+            }
+        }
+        yield return new WaitForSeconds(a / 3);
+        Debug.Log("Second Third Reached");
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            var b = transform.GetChild(i).gameObject;
+            if (b.CompareTag("End") == true)
+            {
+                b.SetActive(true);
+            }
+        }
+        yield return new WaitForSeconds(a / 3);
+        endtext = "YOUR WINNER!";
+        restart();
+    }
 }

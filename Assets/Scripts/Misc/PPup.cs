@@ -10,6 +10,7 @@ public class PPup : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            other.gameObject.transform.SendMessage("HPup", 1);
             Destroy(gameObject);
         }
     }

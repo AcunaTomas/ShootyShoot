@@ -29,6 +29,6 @@ public class Coptero : Generic //Update and Start set per enemy
     {
 
         StartCoroutine(Timeout());
-        InvokeRepeating("Attack", 2f, 2f);
+        
     }
 }
