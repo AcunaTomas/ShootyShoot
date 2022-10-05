@@ -78,6 +78,10 @@ public class GameManager : MonoBehaviour
             {
                 b.SetActive(true);
             }
+            else
+            {
+                b.SetActive(false);
+            }
         }
         yield return new WaitForSeconds(a / 3);
         endtext = "YOUR WINNER!";

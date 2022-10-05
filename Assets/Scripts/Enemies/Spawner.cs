@@ -8,10 +8,10 @@ public class Spawner : MonoBehaviour
     public float spawningInterval;
     void Start()
     {
-        InvokeRepeating("Spawn",0.5f,spawningInterval);
+        StartCoroutine(Spawn(spawningInterval));
     }
 
-    void Spawn()
+    IEnumerator Spawn(float interval)
     {
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -21,7 +21,8 @@ public class Spawner : MonoBehaviour
 
             E.gameObject.SetActive(true);
         }
-        
+        yield return new WaitForSeconds(spawningInterval);
+        StartCoroutine(Spawn(spawningInterval));
 
     }
 
