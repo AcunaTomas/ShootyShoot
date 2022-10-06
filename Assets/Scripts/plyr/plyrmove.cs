@@ -51,6 +51,9 @@ public class plyrmove : MonoBehaviour
             case 1:
                 tripleShoot();
                 break;
+            case 2:
+                fastShoot();
+                break;
             default:
                 normalShoot();
                 break;
@@ -85,18 +88,24 @@ public class plyrmove : MonoBehaviour
     
     private void tripleShoot()
     {
-        Proyectiles a = Instantiate(balas, trs.position + new Vector3(+1, +1, 0), balas.transform.rotation);
+        Proyectiles a = Instantiate(balas, trs.position + new Vector3(+0.5f, +1, 0), balas.transform.rotation);
         a.gameObject.SetActive(true);
         a.target = "Enemy";
         Proyectiles b = Instantiate(balas, trs.position + new Vector3(0, +1, 0), balas.transform.rotation);
         b.gameObject.SetActive(true);
         b.target = "Enemy";
-        Proyectiles c = Instantiate(balas, trs.position + new Vector3(-1, +1, 0), balas.transform.rotation);
+        Proyectiles c = Instantiate(balas, trs.position + new Vector3(-0.5f, +1, 0), balas.transform.rotation);
         c.gameObject.SetActive(true);
         c.target = "Enemy";
     }
     
-    
+    private void fastShoot()
+    {
+        Proyectiles a = Instantiate(balas, trs.position + new Vector3(0, +1, 0), balas.transform.rotation);
+        a.gameObject.SetActive(true);
+        a.target = "Enemy";
+        a.direction = 11;
+    }
     
     private void HPup(int a)
     {

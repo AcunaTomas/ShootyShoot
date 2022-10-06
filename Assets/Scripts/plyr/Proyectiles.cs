@@ -33,7 +33,7 @@ public class Proyectiles : MonoBehaviour
     }
     IEnumerator Timeout()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         Destroy(gameObject);
     }
 }
