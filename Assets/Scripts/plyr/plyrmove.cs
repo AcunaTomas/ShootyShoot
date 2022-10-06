@@ -18,7 +18,6 @@ public class plyrmove : MonoBehaviour
         trs = GetComponent<Transform>();
         manager.initializetext(health);
 
-        //InvokeRepeating("Bulletgen",0.5f,0.2f);
     }
 
     void Update()
@@ -37,12 +36,10 @@ public class plyrmove : MonoBehaviour
     }
     void OnMouseDrag() {
         Vector3 a = Input.mousePosition;
-        a.z = 16.9576f; //Valor en z calibrado manualmente, este suele dar posiciones con menos error.s
-        //Debug.Log(a + "before");
+        a.z = 16.9576f; //Valor en z calibrado manualmente, este suele dar posiciones con menos error
+
         a = Camera.main.ScreenToWorldPoint(a);
         
-        //Debug.Log(a + "Mouse");
-        //Debug.Log(trs.position + "Object");
         trs.position =  new Vector3(  a.x , a.y , z);
 
     }
@@ -51,6 +48,9 @@ public class plyrmove : MonoBehaviour
     {
         switch (mod)
         {
+            case 1:
+                tripleShoot();
+                break;
             default:
                 normalShoot();
                 break;
@@ -78,14 +78,46 @@ public class plyrmove : MonoBehaviour
 
     private void normalShoot()
     {
-        Proyectiles b = Instantiate(balas,trs.position + new Vector3(0,+2,0), balas.transform.rotation);
+        Proyectiles b = Instantiate(balas,trs.position + new Vector3(0,+1,0), balas.transform.rotation);
         b.gameObject.SetActive(true);
         b.target = "Enemy";
     }
+    
+    private void tripleShoot()
+    {
+        Proyectiles a = Instantiate(balas, trs.position + new Vector3(+1, +1, 0), balas.transform.rotation);
+        a.gameObject.SetActive(true);
+        a.target = "Enemy";
+        Proyectiles b = Instantiate(balas, trs.position + new Vector3(0, +1, 0), balas.transform.rotation);
+        b.gameObject.SetActive(true);
+        b.target = "Enemy";
+        Proyectiles c = Instantiate(balas, trs.position + new Vector3(-1, +1, 0), balas.transform.rotation);
+        c.gameObject.SetActive(true);
+        c.target = "Enemy";
+    }
+    
+    
+    
     private void HPup(int a)
     {
         health += a;
         manager.UpdateHP(health);
+    }
+
+    private void ChangeShoot(int a)
+    {
+        if (mode == 0)
+        {
+            StartCoroutine(TemporaryShoot(a));
+        }
+
+    }
+
+    IEnumerator TemporaryShoot(int a)
+    {
+        mode = a;
+        yield return new WaitForSeconds(15);
+        mode = 0;
     }
 
 }

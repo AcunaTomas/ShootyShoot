@@ -11,6 +11,7 @@ public class PPup : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             other.gameObject.transform.SendMessage("HPup", 1);
+            other.gameObject.transform.SendMessage("ChangeShoot", mode);
             Destroy(gameObject);
         }
     }
