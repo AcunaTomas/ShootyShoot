@@ -54,6 +54,9 @@ public class plyrmove : MonoBehaviour
             case 2:
                 fastShoot();
                 break;
+            case 3:
+                wideShot();
+                break;
             default:
                 normalShoot();
                 break;
@@ -105,6 +108,14 @@ public class plyrmove : MonoBehaviour
         a.gameObject.SetActive(true);
         a.target = "Enemy";
         a.direction = 11;
+    }
+
+    private void wideShot()
+    {
+        Proyectiles a = Instantiate(balas, trs.position + new Vector3(0, +1, 0), balas.transform.rotation);
+        a.gameObject.SetActive(true);
+        a.transform.localScale = new Vector3(0.3f,0.41f,0.0678454f);
+        a.target = "Enemy";
     }
     
     private void HPup(int a)
