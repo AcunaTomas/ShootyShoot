@@ -8,10 +8,10 @@ public class Coptero : Generic //Update and Start set per enemy
     public int spawningmode = 0;
     void Update()
     {
-        swift += time;
-        if (swift >= 10f)
+        swift += Time.deltaTime;
+        if (swift >= 3f)
         {
-            if (swift >=20f)
+            if (swift >=(timeout * 0.90f))
             {
                 transform.position += new Vector3(dirx * Time.deltaTime, -dir * Time.deltaTime, 0);
             }

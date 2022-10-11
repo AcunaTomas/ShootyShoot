@@ -16,6 +16,7 @@ public class Generic : MonoBehaviour //Enemy Template class - create enemies by 
     public float time = 0.05f;
     public byte chance = 220;
     public int score = 15;
+    public float timeout =25f;
 
     public int getType()
     {
@@ -42,6 +43,7 @@ public class Generic : MonoBehaviour //Enemy Template class - create enemies by 
         else
         {
         hp += -1;
+        StartCoroutine(hurt());
         if (hp < 1)
         {
            var man = GameObject.Find("GameManager");
@@ -72,6 +74,14 @@ public class Generic : MonoBehaviour //Enemy Template class - create enemies by 
         a.target = "Player";
         a.setColors();
         a.gameObject.SetActive(true);
+    }
+
+    IEnumerator hurt()
+    {
+        var cubeRenderer = GetComponent<Renderer>();
+        cubeRenderer.material.SetColor("_Color", Color.red);
+        yield return new WaitForSeconds(0.4f);
+        cubeRenderer.material.SetColor("_Color", Color.white);
     }
 
 }

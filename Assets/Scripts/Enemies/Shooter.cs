@@ -9,14 +9,14 @@ public class Shooter : Generic //Update and Start set per enemy
     public int spawningmode = 0;
     void Update()
     {
-        swift += time;
-        if (swift <= 10f)
+        swift += Time.deltaTime;
+        if (swift <= 3f)
         {
             transform.position += new Vector3(0, dir * Time.deltaTime, 0);
 
 
         }
-        else if (swift <= 22f)
+        else if (swift <= (timeout * 0.85f))
         {
             
         }

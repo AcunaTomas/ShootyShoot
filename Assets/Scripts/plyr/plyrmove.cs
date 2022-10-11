@@ -5,7 +5,7 @@ using UnityEngine;
 public class plyrmove : MonoBehaviour
 {
     public Proyectiles balas;
-    public int mode = 0;
+    public int mode = 1;
     public GameManager manager;
     public float waittime = 0.2f;
     public float elapsed = 0f;
@@ -41,6 +41,18 @@ public class plyrmove : MonoBehaviour
         a = Camera.main.ScreenToWorldPoint(a);
         
         trs.position =  new Vector3(  a.x , a.y , z);
+        if (a.x > 0)
+        {
+            trs.rotation = Quaternion.Euler(-90,0,-20);
+        }
+        else if (a.x < 0)
+        {
+            trs.rotation = Quaternion.Euler(-90,0,20); 
+        }
+        else
+        {
+            trs.rotation = Quaternion.Euler(-90,0,0); 
+        }
 
     }
 

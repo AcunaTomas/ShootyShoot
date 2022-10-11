@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public string nextlevel = "1";
     public txt texto;
     public txt scor;
     public txt hp;
@@ -12,6 +13,11 @@ public class GameManager : MonoBehaviour
     private string endtext = "GAME OVER YEAH!!!";
     private float lvlduration = 90f;
 
+    public GameObject nextlvl;
+    public GameObject restartbtn;
+
+    public GameObject menu;
+    public GameObject background;
 
     public int score;
 
@@ -43,20 +49,28 @@ public class GameManager : MonoBehaviour
         Debug.Log("score");
         score += s;
         scor.text.text = "Score: " + score;
-       /* if (score >= scoregoal)
-        {
-            endtext = "YOUR WINNER!";
-            restart();
-        } */
+
     }
     IEnumerator xd()
     {
         yield return new WaitForSeconds(1);
         texto.gameObject.SetActive(true);
         texto.text.text = endtext;
-        yield return new WaitForSeconds(3);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        background.SetActive(true);
+        menu.SetActive(true);
+        restartbtn.SetActive(true);
     }
+
+    IEnumerator xdw()
+    {
+        yield return new WaitForSeconds(1);
+        texto.gameObject.SetActive(true);
+        texto.text.text = endtext;
+        background.SetActive(true);
+        menu.SetActive(true);
+        nextlvl.SetActive(true);
+    }
+
     IEnumerator LvlTimelimit(float a) //Controls level flow, divided in 3 parts, beginning, middle and end
     {
         yield return new WaitForSeconds(a/3);
@@ -67,6 +81,10 @@ public class GameManager : MonoBehaviour
             if (b.CompareTag("Middle") == true)
             {
                 b.SetActive(true);
+            }
+            else
+            {
+                b.SetActive(false);
             }
         }
         yield return new WaitForSeconds(a / 3);
@@ -85,6 +103,6 @@ public class GameManager : MonoBehaviour
         }
         yield return new WaitForSeconds(a / 3);
         endtext = "YOUR WINNER!";
-        restart();
+        xdw();
     }
 }
