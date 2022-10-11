@@ -9,6 +9,7 @@ public class Playbtn : MonoBehaviour
     public GameObject background;
     public GameObject Menu;
 
+    public GameManager gman;
     public GameObject cont;
     public void Play()
     {
@@ -17,8 +18,16 @@ public class Playbtn : MonoBehaviour
 
     public void next()
     {
-        string a = "1";
-        SceneManager.LoadScene("Level " + a);
+        string a = gman.getNext();
+        if (a == "Menu")
+        {
+            SceneManager.LoadScene("Main Menu");
+        }
+        else
+        {
+            SceneManager.LoadScene("Level " + a);
+        }
+
     }
 
     public void restart()

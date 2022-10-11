@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Application.targetFrameRate = 60;
+        Time.timeScale = 1;
         StartCoroutine(LvlTimelimit(lvlduration));
     }
 
@@ -69,6 +70,7 @@ public class GameManager : MonoBehaviour
         background.SetActive(true);
         menu.SetActive(true);
         nextlvl.SetActive(true);
+        Time.timeScale = 0;
     }
 
     IEnumerator LvlTimelimit(float a) //Controls level flow, divided in 3 parts, beginning, middle and end
@@ -103,6 +105,11 @@ public class GameManager : MonoBehaviour
         }
         yield return new WaitForSeconds(a / 3);
         endtext = "YOUR WINNER!";
-        xdw();
+        StartCoroutine(xdw());
+    }
+
+    public string getNext()
+    {
+        return nextlevel;
     }
 }

@@ -43,7 +43,6 @@ public class Generic : MonoBehaviour //Enemy Template class - create enemies by 
         else
         {
         hp += -1;
-        StartCoroutine(hurt());
         if (hp < 1)
         {
            var man = GameObject.Find("GameManager");
