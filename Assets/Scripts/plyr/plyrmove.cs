@@ -13,9 +13,12 @@ public class plyrmove : MonoBehaviour
     private float z = 6.95f;
     public int health = 3;
 
+    private Transform spin;
+
     void Start()
     {
         trs = GetComponent<Transform>();
+        spin = trs.Find("Plane");
         manager.initializetext(health);
 
     }
@@ -23,6 +26,7 @@ public class plyrmove : MonoBehaviour
     void Update()
     {
         elapsed += Time.deltaTime;
+        spin.Rotate(0f * Time.deltaTime, 360f * Time.deltaTime, 0f * Time.deltaTime, Space.Self);
         if (elapsed >= waittime)
         {
             Bulletgen(mode);

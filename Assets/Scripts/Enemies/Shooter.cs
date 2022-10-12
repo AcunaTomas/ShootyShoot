@@ -7,6 +7,7 @@ public class Shooter : Generic //Update and Start set per enemy
     public plyrmove plyr;
     public float dirx = 2;
     public int spawningmode = 0;
+    private Transform mouth;
     void Update()
     {
         swift += Time.deltaTime;
@@ -29,7 +30,7 @@ public class Shooter : Generic //Update and Start set per enemy
 
     void Start() //generic attribiutes set here: Score,Shooting frequency, Direction, etc. - Only use for overriding stuff
     {
-
+        mouth = transform.Find("Sphere.001");
         StartCoroutine(Timeout());
         InvokeRepeating("Attack", 2f, 2f);
     }
@@ -37,11 +38,20 @@ public class Shooter : Generic //Update and Start set per enemy
 
     private void Attack()
     {
+        StartCoroutine(mouthMove());
         Proyectiles a = Instantiate(Bala, transform.position, Bala.transform.rotation);
         a.direction = -7;
         a.directionx = plyr.trs.position.x * 0.4f;
         a.target = "Player";
         a.setColors();
         a.gameObject.SetActive(true);
+        
+    }
+
+    IEnumerator mouthMove()
+    {
+        mouth.position += new Vector3(0f,-0.5f,0);
+        yield return new WaitForSeconds(0.3f);
+        mouth.position += new Vector3(0f,0.5f,0);
     }
 }

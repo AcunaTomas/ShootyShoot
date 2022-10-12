@@ -6,8 +6,10 @@ public class Coptero : Generic //Update and Start set per enemy
 {
     public float dirx = 2;
     public int spawningmode = 0;
+    private Transform heli;
     void Update()
     {
+        heli.Rotate(0f * Time.deltaTime, 0f * Time.deltaTime, 360f * Time.deltaTime, Space.Self);
         swift += Time.deltaTime;
         if (swift >= 3f)
         {
@@ -28,7 +30,9 @@ public class Coptero : Generic //Update and Start set per enemy
     void Start() //generic attribiutes set here: Score,Shooting frequency, Direction, etc. - Only use for overriding stuff
     {
 
+        heli = transform.Find("Sphere.015").GetChild(0);
         StartCoroutine(Timeout());
+
         
     }
 }
