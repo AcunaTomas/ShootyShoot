@@ -104,7 +104,13 @@ public class GameManager : MonoBehaviour
             }
         }
         yield return new WaitForSeconds(a / 3);
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            var b = transform.GetChild(i).gameObject;
+            b.SetActive(false);
+        }
         endtext = "YOUR WINNER!";
+        yield return new WaitForSeconds(5);
         StartCoroutine(xdw());
     }
 

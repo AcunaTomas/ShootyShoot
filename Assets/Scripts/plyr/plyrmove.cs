@@ -146,6 +146,11 @@ public class plyrmove : MonoBehaviour
         {
             StartCoroutine(TemporaryShoot(a));
         }
+        else if (mode != a)
+        {
+            StopCoroutine(TemporaryShoot(a));
+            StartCoroutine(TemporaryShoot(a));
+        }
 
     }
 
