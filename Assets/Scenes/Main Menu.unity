@@ -731,7 +731,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45f90bb2440d3004f99f73d5e46e73d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mult: -0.01
 --- !u!64 &994389073
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1233,6 +1232,8 @@ MonoBehaviour:
   restartbtn: {fileID: 0}
   menu: {fileID: 0}
   background: {fileID: 0}
+  upg1: {fileID: 0}
+  upg2: {fileID: 0}
   score: 0
 --- !u!4 &1429246115
 Transform:

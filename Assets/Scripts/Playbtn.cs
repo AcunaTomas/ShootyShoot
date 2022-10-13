@@ -16,7 +16,20 @@ public class Playbtn : MonoBehaviour
         SceneManager.LoadScene("Level 1");
     }
 
-    public void next()
+    public void next() //Shoddy Implementation, I know
+    {
+        if (gman.getNext() == "2" || gman.getNext() == "3")
+        {
+            gman.upgrade();
+        }
+        else
+        {
+            nextlvl();
+        }
+
+    }
+
+    private void nextlvl()
     {
         string a = gman.getNext();
         if (a == "Menu")
@@ -27,7 +40,6 @@ public class Playbtn : MonoBehaviour
         {
             SceneManager.LoadScene("Level " + a);
         }
-
     }
 
     public void restart()
@@ -51,6 +63,18 @@ public class Playbtn : MonoBehaviour
         background.SetActive(false);
         Menu.SetActive(false);
         cont.SetActive(false);
+    }
+
+    public void shot()
+    {
+        gman.moreShot();
+        nextlvl();
+    }
+
+    public void size()
+    {
+        gman.moreSize();
+        nextlvl();
     }
 }
 

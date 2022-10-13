@@ -16,8 +16,13 @@ public class GameManager : MonoBehaviour
     public GameObject nextlvl;
     public GameObject restartbtn;
 
+    public plyrmove plyr;
+
     public GameObject menu;
     public GameObject background;
+
+    public GameObject upg1;
+    public GameObject upg2;
 
     public int score;
 
@@ -117,5 +122,24 @@ public class GameManager : MonoBehaviour
     public string getNext()
     {
         return nextlevel;
+    }
+
+    public void upgrade()
+    {
+        texto.text.text = "Choose an Upgrade";
+        menu.SetActive(false);
+        nextlvl.SetActive(false);
+        upg1.SetActive(true);
+        upg2.SetActive(true);
+    }
+
+    //A disaster of an upgrade system - hope it works
+    public void moreShot()
+    {
+        plyr.shot();
+    }
+    public void moreSize()
+    {
+        plyr.size();
     }
 }

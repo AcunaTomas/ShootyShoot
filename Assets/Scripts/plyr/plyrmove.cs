@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class plyrmove : MonoBehaviour
 {
+
     public Proyectiles balas;
     public int mode = 1;
     public GameManager manager;
-    public float waittime = 0.2f;
+    private float waittime = 0.2f;
+    private float wideness = 0.5f;
     public float elapsed = 0f;
     public Transform trs;
     private float z = 6.95f;
@@ -17,6 +19,10 @@ public class plyrmove : MonoBehaviour
 
     void Start()
     {
+        waittime = upgradeInit.shot;
+        wideness = upgradeInit.size;
+        Debug.Log(waittime);
+        Debug.Log(wideness);
         trs = GetComponent<Transform>();
         spin = trs.Find("Plane");
         manager.initializetext(health);
@@ -130,7 +136,7 @@ public class plyrmove : MonoBehaviour
     {
         Proyectiles a = Instantiate(balas, trs.position + new Vector3(0, +1, 0), balas.transform.rotation);
         a.gameObject.SetActive(true);
-        a.transform.localScale = new Vector3(0.3f,0.41f,0.0678454f);
+        a.transform.localScale = new Vector3(wideness,0.41f,0.0678454f);
         a.target = "Enemy";
     }
     
@@ -159,6 +165,15 @@ public class plyrmove : MonoBehaviour
         mode = a;
         yield return new WaitForSeconds(15);
         mode = 0;
+    }
+
+    public void shot()
+    {
+        upgradeInit.shot += -0.05f;
+    }
+    public void size()
+    {
+        upgradeInit.size += 0.1f;
     }
 
 }

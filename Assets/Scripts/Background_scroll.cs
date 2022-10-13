@@ -5,7 +5,7 @@ using UnityEngine;
 public class Background_scroll : MonoBehaviour
 {
     float scroll = 0f;
-    public float mult = -0.001f;
+    private float mult = -0.5f;
 
     void Start()
     {
@@ -13,8 +13,8 @@ public class Background_scroll : MonoBehaviour
     }
     void Update()
     {
-        scroll += mult;
-        transform.position = new Vector3(transform.position.x, transform.position.y + mult, transform.position.z);
+        scroll += mult * Time.deltaTime;
+        transform.position = new Vector3(transform.position.x, transform.position.y + (mult * Time.deltaTime), transform.position.z);
         if (scroll >= 60f || scroll <= -60f)
         {
             mult = mult *-1;
