@@ -14,6 +14,7 @@ public class plyrmove : MonoBehaviour
     public Transform trs;
     private float z = 6.95f;
     public int health = 3;
+    private bool invis = false;
 
     private Transform spin;
 
@@ -87,7 +88,7 @@ public class plyrmove : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy" && invis == false)
         {
             Die();
         }
@@ -101,6 +102,7 @@ public class plyrmove : MonoBehaviour
             Destroy(gameObject);
             manager.restart();
         }
+        StartCoroutine(tempInv());
         manager.UpdateHP(health);
     }
 
@@ -176,4 +178,10 @@ public class plyrmove : MonoBehaviour
         upgradeInit.size += 0.1f;
     }
 
+    IEnumerator tempInv()
+    {
+        invis = true;
+        yield return new WaitForSeconds(1);
+        invis = false;
+    }
 }
