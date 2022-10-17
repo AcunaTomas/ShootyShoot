@@ -75,12 +75,5 @@ public class Generic : MonoBehaviour //Enemy Template class - create enemies by 
         a.gameObject.SetActive(true);
     }
 
-    IEnumerator hurt()
-    {
-        var cubeRenderer = GetComponent<Renderer>();
-        cubeRenderer.material.SetColor("_Color", Color.red);
-        yield return new WaitForSeconds(0.4f);
-        cubeRenderer.material.SetColor("_Color", Color.white);
-    }
 
 }

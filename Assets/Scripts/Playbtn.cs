@@ -16,7 +16,7 @@ public class Playbtn : MonoBehaviour
         SceneManager.LoadScene("Level 1");
     }
 
-    public void next() //Shoddy Implementation, I know
+    public void next() //Shoddy Implementation, I know - Upgrades for only the first 2 levels
     {
         if (gman.getNext() == "2" || gman.getNext() == "3")
         {

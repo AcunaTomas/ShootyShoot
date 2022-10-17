@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public txt scor;
     public txt hp;
     public int scoregoal = 300;
-    private string endtext = "GAME OVER YEAH!!!";
+    private string endtext = "GAME OVER \n YEAH!!!";
     private float lvlduration = 90f;
 
     public GameObject nextlvl;
@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public GameObject upg1;
     public GameObject upg2;
 
+    public GameObject pauseah;
     public int score;
 
     void Start()
@@ -65,6 +66,8 @@ public class GameManager : MonoBehaviour
         background.SetActive(true);
         menu.SetActive(true);
         restartbtn.SetActive(true);
+
+        Time.timeScale = 0;
     }
 
     IEnumerator xdw()
@@ -116,6 +119,7 @@ public class GameManager : MonoBehaviour
         }
         endtext = "YOUR WINNER!";
         yield return new WaitForSeconds(5);
+        pauseah.SetActive(false);
         StartCoroutine(xdw());
     }
 

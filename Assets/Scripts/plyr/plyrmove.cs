@@ -8,7 +8,7 @@ public class plyrmove : MonoBehaviour
     public Proyectiles balas;
     public int mode = 1;
     public GameManager manager;
-    private float waittime = 0.2f;
+    private float waittime = 0.3f;
     private float wideness = 0.5f;
     public float elapsed = 0f;
     public Transform trs;
@@ -110,6 +110,7 @@ public class plyrmove : MonoBehaviour
     {
         Proyectiles b = Instantiate(balas,trs.position + new Vector3(0,+1,0), balas.transform.rotation);
         b.gameObject.SetActive(true);
+        b.transform.localScale = new Vector3(wideness, wideness, 0.04069692f);
         b.target = "Enemy";
     }
     
@@ -138,7 +139,7 @@ public class plyrmove : MonoBehaviour
     {
         Proyectiles a = Instantiate(balas, trs.position + new Vector3(0, +1, 0), balas.transform.rotation);
         a.gameObject.SetActive(true);
-        a.transform.localScale = new Vector3(wideness,0.41f,0.0678454f);
+        a.transform.localScale = new Vector3(0.5f,0.41f,0.0678454f);
         a.target = "Enemy";
     }
     
@@ -175,7 +176,7 @@ public class plyrmove : MonoBehaviour
     }
     public void size()
     {
-        upgradeInit.size += 0.1f;
+        upgradeInit.size += 0.05f;
     }
 
     IEnumerator tempInv()
