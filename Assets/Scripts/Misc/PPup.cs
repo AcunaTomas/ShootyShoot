@@ -17,6 +17,6 @@ public class PPup : MonoBehaviour
     }
     void Update()
     {
-        transform.Translate(0,-2 * Time.deltaTime,0);
+        transform.position += new Vector3(0,-2 * Time.deltaTime,0);
     }
 }
