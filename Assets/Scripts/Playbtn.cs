@@ -8,9 +8,12 @@ public class Playbtn : MonoBehaviour
 {
     public GameObject background;
     public GameObject Menu;
-
+    public GameObject opti;
     public GameManager gman;
     public GameObject cont;
+
+    private bool show = true;
+
     public void Play()
     {
         SceneManager.LoadScene("Level 1");
@@ -75,6 +78,13 @@ public class Playbtn : MonoBehaviour
     {
         gman.moreSize();
         nextlvl();
+    }
+
+
+    public void options()
+    {
+        opti.SetActive(show);
+        show = !show;
     }
 }
 
