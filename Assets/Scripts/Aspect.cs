@@ -21,7 +21,7 @@ public class Aspect : MonoBehaviour
             upgradeInit.playx = 38.5f;
             upgradeInit.playy = -980f;
         }
-        else if (Camera.main.aspect >= 0.45f) //9:20
+        else if (Camera.main.aspect >= 0.44f) //9:20
         {
             upgradeInit.playx = 38.5f;
             upgradeInit.playy = -1080f;
