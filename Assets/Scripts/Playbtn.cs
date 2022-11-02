@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using TMPro;
 
 public class Playbtn : MonoBehaviour
 {
+    public TextMeshProUGUI thistext;
     public GameObject background;
     public GameObject Menu;
     public GameObject opti;
@@ -13,6 +14,8 @@ public class Playbtn : MonoBehaviour
     public GameObject cont;
 
     private bool show = true;
+
+    private float volume = 0f;
 
     public void Play()
     {
@@ -85,6 +88,21 @@ public class Playbtn : MonoBehaviour
     {
         opti.SetActive(show);
         show = !show;
+    }
+
+    public void sound()
+    {
+        AudioListener.volume = volume;
+        if (volume == 1)
+        {
+            volume = 0;
+            thistext.text = "Sound On";
+        }
+        else
+        {
+            volume = 1;
+            thistext.text = "Sound Off";
+        }
     }
 }
 
