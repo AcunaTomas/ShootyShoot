@@ -5,6 +5,7 @@ using UnityEngine;
 public class PPup : MonoBehaviour
 {
     public int mode = 1;
+    public AudioSource dd;
     
     void OnTriggerEnter(Collider other)
     {
@@ -12,6 +13,7 @@ public class PPup : MonoBehaviour
         {
             other.gameObject.transform.SendMessage("HPup", 1);
             other.gameObject.transform.SendMessage("ChangeShoot", mode);
+            dd.Play();
             Destroy(gameObject);
         }
     }

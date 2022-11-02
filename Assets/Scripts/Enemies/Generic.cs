@@ -18,6 +18,8 @@ public class Generic : MonoBehaviour //Enemy Template class - create enemies by 
     public int score = 15;
     public float timeout =25f;
 
+
+
     public int getType()
     {
         return type;

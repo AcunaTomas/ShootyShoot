@@ -7,9 +7,12 @@ public class Proyectiles : MonoBehaviour
     public string target = "";
     public float direction = 7;
     public float directionx = 0;
+    public AudioSource sda;
+    public AudioSource xd;
     void Start()
     {
         StartCoroutine(Timeout());
+        sda.Play();
     }
 
     void Update()
@@ -22,6 +25,7 @@ public class Proyectiles : MonoBehaviour
         if (other.gameObject.tag == target)
         {
             other.transform.SendMessage("Die");
+            xd.Play();
             Destroy(gameObject);
         }
         

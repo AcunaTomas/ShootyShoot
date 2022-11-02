@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     public GameObject upg2;
 
     public GameObject pauseah;
+
+    public AudioSource ded;
     public int score;
 
     void Start()
@@ -54,6 +56,7 @@ public class GameManager : MonoBehaviour
     private void Score(int s)
     {
         Debug.Log("score");
+        ded.Play();
         score += s;
         scor.text.text = "Score: " + score;
 

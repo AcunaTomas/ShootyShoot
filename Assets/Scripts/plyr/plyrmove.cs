@@ -5,6 +5,8 @@ using UnityEngine;
 public class plyrmove : MonoBehaviour
 {
 
+    public AudioSource ded;
+    public AudioSource hit;
     public Proyectiles balas;
     public int mode = 1;
     public GameManager manager;
@@ -99,6 +101,7 @@ public class plyrmove : MonoBehaviour
         health += -1;
         if (health <= 0)
         {
+            ded.Play();
             Destroy(gameObject);
             manager.restart();
         }
@@ -181,6 +184,7 @@ public class plyrmove : MonoBehaviour
 
     IEnumerator tempInv()
     {
+        hit.Play();
         invis = true;
         yield return new WaitForSeconds(1);
         invis = false;
