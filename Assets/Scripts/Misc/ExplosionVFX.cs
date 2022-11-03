@@ -5,9 +5,11 @@ using UnityEngine;
 public class ExplosionVFX : MonoBehaviour
 {
     // Start is called before the first frame update
-    Vector3 scaleChange = new Vector3(2f, 2f, 2f);
+
+    Vector3 scaleChange = new Vector3(10f,10f, 10f);
     void Start()
     {
+        transform.localRotation = Quaternion.Euler(Random.Range(-80, 80), 0, 0);
         StartCoroutine(TimeOut());
     }
 
@@ -15,12 +17,14 @@ public class ExplosionVFX : MonoBehaviour
     void Update()
     {
         transform.position += new Vector3(0, -0.01f * Time.deltaTime, 0);
+
         transform.localScale += scaleChange;
+        scaleChange += new Vector3(-1, -1, -1);
     }
 
     IEnumerator TimeOut()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         Destroy(gameObject);
     }
 }

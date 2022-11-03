@@ -102,6 +102,7 @@ public class plyrmove : MonoBehaviour
         if (health <= 0)
         {
             ded.Play();
+            manager.SendMessage("Explode", trs);
             Destroy(gameObject);
             manager.restart();
         }
