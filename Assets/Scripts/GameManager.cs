@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     public GameObject nextlvl;
     public GameObject restartbtn;
 
+    public GameObject Explosione;
+
     public plyrmove plyr;
 
     public GameObject menu;
@@ -33,7 +35,15 @@ public class GameManager : MonoBehaviour
     {
         Application.targetFrameRate = 60;
         Time.timeScale = 1;
-        StartCoroutine(LvlTimelimit(lvlduration));
+        if (SceneManager.GetActiveScene().name == "Main Menu")
+        {
+
+        }
+        else
+        {
+            StartCoroutine(LvlTimelimit(lvlduration));
+        }
+
     }
 
     public void initializetext(int s)
@@ -61,6 +71,15 @@ public class GameManager : MonoBehaviour
         scor.text.text = "Score: " + score;
 
     }
+
+    private void Explode(Transform pos)
+    {
+        Debug.Log("here");
+        GameObject exp = Instantiate(Explosione, pos.position,pos.rotation);
+        exp.SetActive(true);
+    }
+
+
     IEnumerator xd()
     {
         yield return new WaitForSeconds(1);

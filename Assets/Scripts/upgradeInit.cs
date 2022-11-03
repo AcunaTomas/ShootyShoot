@@ -10,6 +10,7 @@ public static class upgradeInit
     public static float logoy = 1696f;
     public static float playx = 0f;
     public static float playy = 0f;
+    public static bool showOpt = true;
 
 
 }

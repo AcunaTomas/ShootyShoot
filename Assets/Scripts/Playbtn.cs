@@ -13,7 +13,6 @@ public class Playbtn : MonoBehaviour
     public GameManager gman;
     public GameObject cont;
 
-    private bool show = true;
 
     private float volume = 0f;
 
@@ -86,8 +85,8 @@ public class Playbtn : MonoBehaviour
 
     public void options()
     {
-        opti.SetActive(show);
-        show = !show;
+        opti.SetActive(upgradeInit.showOpt);
+        upgradeInit.showOpt = !upgradeInit.showOpt;
     }
 
     public void sound()

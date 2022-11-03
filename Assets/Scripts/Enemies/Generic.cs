@@ -45,22 +45,23 @@ public class Generic : MonoBehaviour //Enemy Template class - create enemies by 
         else
         {
         hp += -1;
-        if (hp < 1)
-        {
-           var man = GameObject.Find("GameManager");
-           
-           var rand = new System.Random();
-           byte[] b = new byte[1];
-           rand.NextBytes(b);
+            if (hp < 1)
+            {
+                var man = GameObject.Find("GameManager");
+
+                var rand = new System.Random();
+                byte[] b = new byte[1];
+                rand.NextBytes(b);
                 if (b[0] > chance)
                 {
                     PPup v = Instantiate(Power, transform.position, Power.transform.rotation);
                     v.gameObject.SetActive(true);
                     Debug.Log(b[0]);
                 }
-         
-           man.gameObject.SendMessage("Score", score);
-           Destroy(gameObject); 
+
+                man.gameObject.SendMessage("Score", score);
+                man.gameObject.SendMessage("Explode", transform);
+                Destroy(gameObject); 
         }
         
         }
