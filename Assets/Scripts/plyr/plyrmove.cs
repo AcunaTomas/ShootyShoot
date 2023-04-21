@@ -41,6 +41,7 @@ public class plyrmove : MonoBehaviour
             Bulletgen(mode);
             elapsed = 0;
         }
+        PCControls();
     }
 
     void OnMouseDown()
@@ -166,6 +167,13 @@ public class plyrmove : MonoBehaviour
         }
 
     }
+
+    private void PCControls()
+    {
+        transform.position += new Vector3(Input.GetAxis("Horizontal") * 6 * Time.deltaTime, Input.GetAxis("Vertical") * 6 * Time.deltaTime, 0);
+        trs.rotation = Quaternion.Euler(-90, 0, -20 * (Input.GetAxis("Horizontal") ));
+    }
+
 
     IEnumerator TemporaryShoot(int a)
     {

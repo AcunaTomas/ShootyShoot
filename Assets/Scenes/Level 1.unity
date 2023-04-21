@@ -11432,6 +11432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -12589,7 +12590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373afb1eb640a8148bcc3cbb63378a54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
+  text: {fileID: 1699058264}
 --- !u!114 &1699058264
 MonoBehaviour:
   m_ObjectHideFlags: 0
