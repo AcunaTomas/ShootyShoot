@@ -48,7 +48,7 @@ public class plyrmove : MonoBehaviour
     {
         
     }
-    void OnMouseDrag() {
+    /* void OnMouseDrag() {
         Vector3 a = Input.mousePosition;
         a.z = 16.9576f; //Valor en z calibrado manualmente, este suele dar posiciones con menos error
 
@@ -68,7 +68,7 @@ public class plyrmove : MonoBehaviour
             trs.rotation = Quaternion.Euler(-90,0,0); 
         }
 
-    }
+    } */
 
     private void Bulletgen(int mod)
     {
@@ -170,8 +170,29 @@ public class plyrmove : MonoBehaviour
 
     private void PCControls()
     {
-        transform.position += new Vector3(Input.GetAxis("Horizontal") * 6 * Time.deltaTime, Input.GetAxis("Vertical") * 6 * Time.deltaTime, 0);
+        var horizontalInput = Input.GetAxis("Horizontal");
+        var verticalInput = Input.GetAxis("Vertical");
+        if (transform.position.x > 5.25 && horizontalInput > 0)
+        {
+            horizontalInput = 0f;
+        }
+        else
+        {
+
+        }
+        if (transform.position.x < -5.25 && horizontalInput < 0)
+        {
+            horizontalInput = 0f;
+        }
+        else
+        {
+
+        }
+        
+        transform.position += new Vector3( horizontalInput * 6 * Time.deltaTime, verticalInput  * 6 * Time.deltaTime, 0);
         trs.rotation = Quaternion.Euler(-90, 0, -20 * (Input.GetAxis("Horizontal") ));
+        
+
     }
 
 
