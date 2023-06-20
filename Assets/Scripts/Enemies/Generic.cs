@@ -30,7 +30,7 @@ public class Generic : MonoBehaviour //Enemy Template class - create enemies by 
 
     public IEnumerator Timeout()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(1f);
         invis = false;
         yield return new WaitForSeconds(25f);
         Destroy(gameObject);

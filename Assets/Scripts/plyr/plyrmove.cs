@@ -48,13 +48,13 @@ public class plyrmove : MonoBehaviour
     {
         
     }
-    /* void OnMouseDrag() {
+     void OnMouseDrag() {
         Vector3 a = Input.mousePosition;
         a.z = 16.9576f; //Valor en z calibrado manualmente, este suele dar posiciones con menos error
 
         a = Camera.main.ScreenToWorldPoint(a);
         
-        trs.position =  new Vector3(  a.x , a.y , z);
+        trs.position =  new Vector3(a.x , a.y , z);
         if (a.x > 0)
         {
             trs.rotation = Quaternion.Euler(-90,0,-20);
@@ -68,7 +68,7 @@ public class plyrmove : MonoBehaviour
             trs.rotation = Quaternion.Euler(-90,0,0); 
         }
 
-    } */
+    } 
 
     private void Bulletgen(int mod)
     {
@@ -99,7 +99,11 @@ public class plyrmove : MonoBehaviour
 
     private void Die()
     {
-        health += -1;
+        if (invis == false)
+        {
+            health += -1;
+        }
+
         if (health <= 0)
         {
             ded.Play();
@@ -188,7 +192,14 @@ public class plyrmove : MonoBehaviour
         {
 
         }
-        
+        if (transform.position.y < -6.5f && verticalInput < 0)
+        {
+            verticalInput = 0f;
+        }
+        else
+        {
+
+        }
         transform.position += new Vector3( horizontalInput * 6 * Time.deltaTime, verticalInput  * 6 * Time.deltaTime, 0);
         trs.rotation = Quaternion.Euler(-90, 0, -20 * (Input.GetAxis("Horizontal") ));
         
@@ -216,7 +227,7 @@ public class plyrmove : MonoBehaviour
     {
         hit.Play();
         invis = true;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.5f);
         invis = false;
     }
 }
