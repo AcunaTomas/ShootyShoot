@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Unity.Services.Core;
+using Unity.Services.Analytics;
 
 public class GameManager : MonoBehaviour
 {
@@ -33,18 +35,40 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        Application.targetFrameRate = 60;
         Time.timeScale = 1;
         if (SceneManager.GetActiveScene().name == "Main Menu")
         {
-
+            
         }
         else
         {
-            StartCoroutine(LvlTimelimit(lvlduration));
+             if (nextlevel == "Menu")
+            {
+                Dictionary<string, object> parameters = new Dictionary<string, object>()
+                {
+                    {"level_index", 4}
+                };
+                AnalyticsService.Instance.CustomData("level_start", parameters);
+                upgradeInit.currentLevel = 4;
+            }
+            else
+            {
+                Dictionary<string, object> parameters = new Dictionary<string, object>()
+                {
+                    {"level_index", int.Parse(nextlevel) - 1}
+                };
+                AnalyticsService.Instance.CustomData("level_start", parameters);
+                upgradeInit.currentLevel = int.Parse(nextlevel) - 1;
+            }
+             
+            //Debug.Log(parameters["level_index"].ToString() + " levellog");
+
+            StartCoroutine(LvlTimelimit(upgradeInit.lvlduration));
         }
 
     }
+
+
 
     public void initializetext(int s)
     {
@@ -83,6 +107,23 @@ public class GameManager : MonoBehaviour
     IEnumerator xd()
     {
         yield return new WaitForSeconds(1);
+        if (nextlevel == "Menu")
+        {
+            upgradeInit.level = 4;
+        }
+        else
+        {
+            upgradeInit.level = int.Parse(nextlevel) - 1;
+        }
+        upgradeInit.gameover_count += 1;
+        Dictionary<string, object> parameters = new Dictionary<string, object>()
+                {
+                    {"game_over_count", upgradeInit.gameover_count},
+                    {"level_index", upgradeInit.level}
+                };
+        Debug.Log(parameters["level_index"].ToString());
+        Debug.Log(parameters["game_over_count"].ToString());
+        AnalyticsService.Instance.CustomData("game_over", parameters); 
         texto.gameObject.SetActive(true);
         texto.text.text = endtext;
         background.SetActive(true);
@@ -90,18 +131,27 @@ public class GameManager : MonoBehaviour
         restartbtn.SetActive(true);
 
         Time.timeScale = 0;
-    }
+}
 
     IEnumerator xdw()
     {
         yield return new WaitForSeconds(1);
+       upgradeInit.score = score;
+        if (nextlevel == "Menu")
+        {
+            upgradeInit.level = 4;
+        }
+        else
+        {
+            upgradeInit.level = int.Parse(nextlevel) - 1;
+        }
         texto.gameObject.SetActive(true);
         texto.text.text = endtext;
         background.SetActive(true);
         menu.SetActive(true);
         nextlvl.SetActive(true);
         Time.timeScale = 0;
-    }
+}
 
     IEnumerator LvlTimelimit(float a) //Controls level flow, divided in 3 parts, beginning, middle and end
     {

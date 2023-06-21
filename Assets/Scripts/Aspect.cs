@@ -1,11 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Services.Core;
+using Unity.Services.Analytics;
+
 
 public class Aspect : MonoBehaviour
 {
     Camera c; //Aspect Ratio Hack
-    void Start()
+
+    async void Start()
+    {
+        try
+        {
+            await UnityServices.InitializeAsync();
+            List<string> consentIdentifiers = await AnalyticsService.Instance.CheckForRequiredConsents();
+            Debug.Log("It works...?");
+        }
+        catch (ConsentCheckException conunacdespuesdelax)
+        {
+            Debug.Log("WARNING: CONSENT FAILED, CALL AUTHORITES");
+        }
+
+    } 
+
+    void Awake()
     {
         c = GetComponent<Camera>();
 

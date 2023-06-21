@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using Unity.Services.Core;
+using Unity.Services.Analytics;
 
 public class Playbtn : MonoBehaviour
 {
@@ -12,7 +14,7 @@ public class Playbtn : MonoBehaviour
     public GameObject opti;
     public GameManager gman;
     public GameObject cont;
-
+    private bool state = true;
 
     private float volume = 0f;
 
@@ -37,12 +39,27 @@ public class Playbtn : MonoBehaviour
     private void nextlvl()
     {
         string a = gman.getNext();
+        Dictionary<string, object> parameters = new Dictionary<string, object>()
+            {
+                {"level_index", upgradeInit.level},
+                {"points", upgradeInit.score},
+                {"upgrade_choice", upgradeInit.chosenUpgrade},
+                {"powerup_obtained", upgradeInit.powerup_obtained}
+            };
+        Debug.Log(parameters["level_index"].ToString());
+        Debug.Log(parameters["points"].ToString());
+        Debug.Log(parameters["upgrade_choice"].ToString());
+        Debug.Log(parameters["powerup_obtained"].ToString());
+        AnalyticsService.Instance.CustomData("level_complete", parameters);
+        
         if (a == "Menu")
         {
+            upgradeInit.lvlduration = 60f;
             SceneManager.LoadScene("Main Menu");
         }
         else
         {
+            upgradeInit.lvlduration += 10f; 
             SceneManager.LoadScene("Level " + a);
         }
     }
@@ -95,13 +112,21 @@ public class Playbtn : MonoBehaviour
         if (volume == 1)
         {
             volume = 0;
+            state = true;
             thistext.text = "Sound On";
         }
         else
         {
             volume = 1;
+            state = false;
             thistext.text = "Sound Off";
         }
+        Dictionary<string, object> parameters = new Dictionary<string, object>()
+        {
+            {"sound_state", state},
+        };
+        Debug.Log(parameters["sound_state"]);
+        AnalyticsService.Instance.CustomData("sound_toggle", parameters);
     }
 }
 
