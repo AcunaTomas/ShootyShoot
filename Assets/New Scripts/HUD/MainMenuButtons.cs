@@ -9,7 +9,22 @@ public class MainMenuButtons : MonoBehaviour
     {
         Camera = GetComponent<Camera>();
     }
-    void Update()
+    void OnGUI()
+    {
+        Event m_Event = Event.current;
+        if (m_Event.type == EventType.MouseDown) Click();
+/*         Vector3 mpos = Input.mousePosition;
+        mpos.z = 16.9576f;
+        RaycastHit hit;
+        Physics.Raycast(Camera.ScreenToWorldPoint(mpos), transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity);
+        hit.collider.gameObject.SendMessage("Play", SendMessageOptions.DontRequireReceiver);
+        Debug.Log(hit.collider);
+         Debug.DrawRay(Camera.ScreenToWorldPoint(mpos), transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+            Debug.Log("Did Hit");
+        //Debug.Log(Camera.ScreenToWorldPoint(mpos)); */
+    }
+
+    void Click()
     {
         Vector3 mpos = Input.mousePosition;
         mpos.z = 16.9576f;
@@ -18,16 +33,6 @@ public class MainMenuButtons : MonoBehaviour
         hit.collider.gameObject.SendMessage("Play", SendMessageOptions.DontRequireReceiver);
         Debug.Log(hit.collider);
          Debug.DrawRay(Camera.ScreenToWorldPoint(mpos), transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-            Debug.Log("Did Hit");
-        //Debug.Log(Camera.ScreenToWorldPoint(mpos));
-    }
-
-    void OnMouseDown()
-    {
-        RaycastHit hit;
-        Physics.Raycast(Camera.ScreenToWorldPoint(Input.mousePosition), transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity);
-        hit.collider.gameObject.SendMessage("Play");
-        Debug.Log(hit.collider);
         
     }
 }
