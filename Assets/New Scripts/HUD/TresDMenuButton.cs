@@ -20,5 +20,6 @@ public class TresDMenuButton : MonoBehaviour
     void Play()
     {
         print("You have presionado el boton bolar");
+        transform.localPosition = new Vector3(0,0,0.0091f);
     }
 }
